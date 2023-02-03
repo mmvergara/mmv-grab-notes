@@ -1,14 +1,35 @@
 import { authValidationSchema } from "@/schema/form-schema";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { AuthError } from "@supabase/supabase-js";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 const AuthPage: React.FC = () => {
+  const supabase = useSupabaseClient();
+  const router = useRouter();
   const [authState, setAuthState] = useState<"Login" | "Sign Up">("Login");
   const toggleAuthState = () => setAuthState((s) => (s === "Login" ? "Sign Up" : "Login"));
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    let error: null | AuthError = null;
     const authData = { email: formik.values.email, password: formik.values.password };
+
+    if (authState === "Login") {
+      const { error: err } = await supabase.auth.signInWithPassword(authData);
+      if (err) error = err;
+    }
+
+    if (authState === "Sign Up") {
+      const { error: err } = await supabase.auth.signUp(authData);
+      if (err) error = err;
+    }
+
+    if (error) {
+      console.log(error);
+    } else {
+      router.push("/");
+    }
   };
 
   const formik = useFormik({
@@ -16,13 +37,11 @@ const AuthPage: React.FC = () => {
     validationSchema: authValidationSchema,
     onSubmit,
   });
-  console.log(formik.values);
   const emailError = formik.touched.email && formik.errors.email;
   const passwordError = formik.touched.password && formik.errors.password;
-  console.log(emailError);
   return (
     <>
-      <form className='form-control mt-8 w-full max-w-xs mx-auto'>
+      <form className='form-control mt-8 w-full max-w-xs mx-auto' onSubmit={formik.handleSubmit}>
         <h1 className='w-full text-center text-3xl sm:text-4xl'>{authState}</h1>
         <label className='label'>
           <span className='label-text'>Email</span>
