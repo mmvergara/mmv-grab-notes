@@ -17,6 +17,10 @@ const Note: React.FC<NoteProps> = ({ title, content, date }) => {
         dolorum eum autem blanditiis commodi distinctio debitis in accusamus sunt, ipsa a corporis voluptate natus fugit
         vero iure?
       </p>
+      <div className='flex gap-2'>
+        <button className='btn btn-outline btn-accent mt-4'>Edit</button>
+        <button className='btn btn-outline btn-error mt-4'>Delete</button>
+      </div>
     </article>
   );
 };

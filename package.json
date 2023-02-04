@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-types":"npx supabase gen types typescript --project-id 'updvwfblmukfnifcwiqz' --schema public > supabase/db-generated-types.ts"
+    "generate-types": "npx supabase gen types typescript --project-id 'updvwfblmukfnifcwiqz' --schema public > supabase/db-generated-types.ts"
   },
   "dependencies": {
     "@next/font": "13.1.5",
@@ -24,6 +24,7 @@
     "next": "13.1.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-toastify": "^9.1.1",
     "typescript": "4.9.4",
     "yup": "^0.32.11"
   },
