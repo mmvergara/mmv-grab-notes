@@ -19,10 +19,10 @@ const Navbar: React.FC = () => {
           {user ? (
             <>
               <li>
-                <Link href='/settings'>Settings</Link>
+                <Link href='/notes'>Notes</Link>
               </li>
               <li>
-                <Link href='/notes'>Notes</Link>
+                <Link href='/settings'>Settings</Link>
               </li>
             </>
           ) : (

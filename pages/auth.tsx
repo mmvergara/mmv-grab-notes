@@ -1,13 +1,14 @@
 import { authValidationSchema } from "@/schema/form-schema";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { SBTypes } from "@/supabase/database-types";
 import { AuthError } from "@supabase/supabase-js";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 const AuthPage: React.FC = () => {
-  const supabase = useSupabaseClient();
   const router = useRouter();
+  const supabase = useSupabaseClient<SBTypes>();
   const [authState, setAuthState] = useState<"Login" | "Sign Up">("Login");
   const toggleAuthState = () => setAuthState((s) => (s === "Login" ? "Sign Up" : "Login"));
 
@@ -37,6 +38,7 @@ const AuthPage: React.FC = () => {
     validationSchema: authValidationSchema,
     onSubmit,
   });
+
   const emailError = formik.touched.email && formik.errors.email;
   const passwordError = formik.touched.password && formik.errors.password;
   return (

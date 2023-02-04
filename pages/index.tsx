@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
       <main>
         <h1>Grap Quotes</h1>
-        <p></p>
+        <p>Grab Quotes is a website where you can grab quotes from your favorite movies and tv shows.</p>
       </main>
     </>
   );
