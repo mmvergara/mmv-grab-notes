@@ -9,8 +9,8 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <h1>Grap Notes</h1>
-        <p>Grab Notes is a website where you can grab quotes from your favorite movies and tv shows.</p>
+        <h1 className="text-5xl text-center my-4">Grab Notes</h1>
+        <p className="text-2xl text-center"></p>
       </main>
     </>
   );
