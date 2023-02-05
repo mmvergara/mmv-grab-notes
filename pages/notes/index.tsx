@@ -21,7 +21,7 @@ const Notes: React.FC = () => {
   }, []);
   return (
     <>
-      <Link href={"/notes/create"} className='flex btn btn-success w-[400px] mx-auto mt-4'>
+      <Link href={"/notes/create"} className='flex btn btn-success w-[400px] mx-auto mt-4' data-cy='create-note-page-btn'>
         Create Note
       </Link>
       <section className='flex gap-2 flex-wrap justify-center mx-auto w-screen max-w-[1600px] mt-4 '>

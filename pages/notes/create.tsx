@@ -44,6 +44,7 @@ const CreateNote: React.FC = () => {
           name='title'
           type='text'
           className='input input-bordered w-full max-w-xs'
+          data-cy='note-title-input'
         />
         <label className='label text-red-500'>{titleError || ""}</label>
         <label className='label'>
@@ -54,10 +55,11 @@ const CreateNote: React.FC = () => {
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           name='content'
+          data-cy='note-content-input'
           className='textarea textarea-bordered'
         ></textarea>
         <label className='label text-red-500'>{contentError || ""}</label>
-        <button type='submit' className='btn btn-active btn-accent mt-4'>
+        <button type='submit' className='btn btn-active btn-accent mt-4' data-cy='note-submit-btn'>
           Create Note
         </button>
       </form>

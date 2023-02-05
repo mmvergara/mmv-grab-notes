@@ -10,6 +10,7 @@
     "cypress:open": "cypress open",
     "generate-types": "npx supabase gen types typescript --project-id 'updvwfblmukfnifcwiqz' --schema public > supabase/db-generated-types.ts"
   },
+  
   "dependencies": {
     "@next/font": "13.1.5",
     "@supabase/auth-helpers-nextjs": "^0.5.4",

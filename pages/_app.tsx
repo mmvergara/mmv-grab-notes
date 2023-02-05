@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
       <Navbar />
       <Component {...pageProps} />
-      <ToastContainer />
+      <ToastContainer position="bottom-center"/>
     </SessionContextProvider>
   );
 }
