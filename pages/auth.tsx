@@ -5,6 +5,7 @@ import { AuthError } from "@supabase/supabase-js";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
@@ -27,8 +28,10 @@ const AuthPage: React.FC = () => {
     }
 
     if (error) {
+      toast.error("Something went wrong! Please try again later.");
       console.log(error);
     } else {
+      toast.success("Logged in successfully!");
       router.push("/");
     }
   };

@@ -2,6 +2,7 @@ import { noteValidationSchema } from "@/schema/form-schema";
 import { SBTypes } from "@/supabase/database-types";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 const CreateNote: React.FC = () => {
   const supabase = useSupabaseClient<SBTypes>();
@@ -10,9 +11,11 @@ const CreateNote: React.FC = () => {
     const { title, content } = formik.values;
     const { data, error } = await supabase.from("notes").insert({ title, content, notes_owner_id: user?.id || "" });
     if (error) {
+      toast.error("Something went wrong! Please try again later.");
       console.log(error);
       return;
     }
+    toast.success("Note created successfully!");
     console.log(data);
   };
 

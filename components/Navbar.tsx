@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
     <nav className='navbar bg-base-300'>
       <div className='flex-1'>
         <Link href='/' className='btn btn-ghost normal-case text-xl'>
-          Grab Quotes!
+          Grab Notes!
         </Link>
       </div>
       <div className='flex-none'>

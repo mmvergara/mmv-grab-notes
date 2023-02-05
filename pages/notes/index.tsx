@@ -7,15 +7,15 @@ import { useEffect, useState } from "react";
 const Notes: React.FC = () => {
   const supabase = useSupabaseClient<SBTypes>();
   const [notes, setNotes] = useState<Notes[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchNotes = async () => {
     const { data, error } = await supabase.from("notes").select("*");
-    if (error) {
-      console.log(error);
-      return;
-    }
+    if (error) return console.log(error);
     setNotes(data);
+    setIsLoading(false);
   };
+
   useEffect(() => {
     fetchNotes();
   }, []);
@@ -25,9 +25,11 @@ const Notes: React.FC = () => {
         Create Note
       </Link>
       <section className='flex gap-2 flex-wrap justify-center mx-auto w-screen max-w-[1600px] mt-4 '>
-        {notes.map((note) => {
-          return <Note key={note.id} id={note.id} title={note.title} content={note.content} date={note.created_at} />;
-        })}
+        {isLoading && <h2>Loading</h2>}
+        {!isLoading &&
+          notes.map((note) => {
+            return <Note key={note.id} id={note.id} title={note.title} content={note.content} date={note.created_at} />;
+          })}
       </section>
     </>
   );
