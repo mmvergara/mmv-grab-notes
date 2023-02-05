@@ -7,22 +7,24 @@ const Navbar: React.FC = () => {
   return (
     <nav className='navbar bg-base-300'>
       <div className='flex-1'>
-        <Link href='/' className='btn btn-ghost normal-case text-xl'>
+        <Link href='/' className='btn btn-ghost normal-case text-xl' data-cy='home-logo'>
           Grab Notes!
         </Link>
       </div>
       <div className='flex-none'>
         <ul className='menu menu-horizontal px-1 gap-2'>
           <li>
-            <Link href='/'>Home</Link>
+            <Link href='/' data-cy='home-btn'>Home</Link>
           </li>
           {user ? (
             <>
               <li>
-                <Link href='/notes'>Notes</Link>
+                <Link href='/notes' data-cy='notes-btn'>
+                  Notes
+                </Link>
               </li>
               <li>
-                <Link href='/settings'>
+                <Link href='/settings' data-cy='settings-btn'>
                   <svg
                     fill='#ffffff'
                     version='1.1'
@@ -57,7 +59,9 @@ const Navbar: React.FC = () => {
             </>
           ) : (
             <li>
-              <Link href='/auth'>Login</Link>
+              <Link href='/auth' data-cy='login-btn'>
+                Login
+              </Link>
             </li>
           )}
         </ul>

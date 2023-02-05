@@ -72,10 +72,10 @@ const AuthPage: React.FC = () => {
           className='input input-bordered w-full max-w-xs'
         />
         <label className='label text-red-500'>{passwordError || ""}</label>
-        <button type='submit' className='btn btn-active btn-accent mt-4'>
+        <button type='submit' className='btn btn-active btn-accent mt-4' data-cy='auth-submit-btn'>
           {authState}
         </button>
-        <button type='button' onClick={toggleAuthState} className='btn btn-outline btn-accent mt-4'>
+        <button type='button' onClick={toggleAuthState} className='btn btn-outline btn-accent mt-4' data-cy='auth-state-change-btn'>
           {authState === "Login" ? "Create Account" : "I already have an account"}
         </button>
       </form>
