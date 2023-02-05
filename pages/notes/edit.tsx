@@ -29,7 +29,6 @@ const EditNotePage: React.FC = () => {
     validationSchema: noteValidationSchema,
     onSubmit: handleEdit,
   });
-
   const fetchNote = async () => {
     const { data, error } = await supabase.from("notes").select("*").match({ id: noteid });
     if (error) {
@@ -37,7 +36,6 @@ const EditNotePage: React.FC = () => {
       return;
     }
     await formik.setValues({ title: data[0].title, content: data[0].content });
-
   };
 
   useEffect(() => {
@@ -60,6 +58,7 @@ const EditNotePage: React.FC = () => {
           name='title'
           type='text'
           className='input input-bordered w-full max-w-xs'
+          data-cy='note-title-input-edit'
         />
         <label className='label text-red-500'>{titleError || ""}</label>
         <label className='label'>
@@ -71,9 +70,10 @@ const EditNotePage: React.FC = () => {
           onChange={formik.handleChange}
           name='content'
           className='textarea textarea-bordered'
+          data-cy='note-content-input-edit'
         ></textarea>
         <label className='label text-red-500'>{contentError || ""}</label>
-        <button type='submit' className='btn btn-active btn-accent mt-4'>
+        <button type='submit' className='btn btn-active btn-accent mt-4' data-cy='note-submit-btn-edit'>
           Edit Note
         </button>
       </form>

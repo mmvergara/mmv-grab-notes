@@ -30,7 +30,7 @@ const Note: React.FC<NoteProps> = ({ id, title, content, date }) => {
       <p className='mb-4'>{new Date(date).toLocaleDateString()}</p>
       <p>{content} lorem</p>
       <div className='flex gap-2'>
-        <Link href={`/notes/edit?noteid=${id}`} type='button' className='btn btn-outline btn-accent mt-4'>
+        <Link href={`/notes/edit?noteid=${id}`} type='button' className='btn btn-outline btn-accent mt-4' data-cy="edit-note-btn">
           Edit
         </Link>
         <button onClick={handleDelete} type='button' className='btn btn-outline btn-error mt-4'>

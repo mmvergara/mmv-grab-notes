@@ -3,7 +3,6 @@ import Link from "next/link";
 
 const Navbar: React.FC = () => {
   const user = useUser();
-  console.log(user);
   return (
     <nav className='navbar bg-base-300'>
       <div className='flex-1'>
@@ -14,7 +13,9 @@ const Navbar: React.FC = () => {
       <div className='flex-none'>
         <ul className='menu menu-horizontal px-1 gap-2'>
           <li>
-            <Link href='/' data-cy='home-btn'>Home</Link>
+            <Link href='/' data-cy='home-btn'>
+              Home
+            </Link>
           </li>
           {user ? (
             <>

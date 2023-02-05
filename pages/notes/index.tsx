@@ -8,20 +8,26 @@ const Notes: React.FC = () => {
   const supabase = useSupabaseClient<SBTypes>();
   const [notes, setNotes] = useState<Notes[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const fetchNotes = async () => {
-    const { data, error } = await supabase.from("notes").select("*");
+    console.log("feching notes")
+    const { data, error } = await supabase.from("notes").select("*").order("created_at", { ascending: false });
     if (error) return console.log(error);
+
     setNotes(data);
     setIsLoading(false);
   };
-
   useEffect(() => {
+
     fetchNotes();
   }, []);
+
   return (
     <>
-      <Link href={"/notes/create"} className='flex btn btn-success w-[400px] mx-auto mt-4' data-cy='create-note-page-btn'>
+      <Link
+        href={"/notes/create"}
+        className='flex btn btn-success w-[400px] mx-auto mt-4'
+        data-cy='create-note-page-btn'
+      >
         Create Note
       </Link>
       <section className='flex gap-2 flex-wrap justify-center mx-auto w-screen max-w-[1600px] mt-4 '>
