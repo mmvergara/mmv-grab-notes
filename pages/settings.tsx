@@ -16,7 +16,7 @@ const SettingsPage: React.FC = () => {
   return (
     <section className='mt-8 flex flex-col justify-center items-center gap-2'>
       <button className='btn btn-error' onClick={handleLogout}>Logout</button>
-      <button className='btn btn-accent'>Logout</button>
+      {/* <button className='btn btn-accent'>Logout</button> */}
     </section>
   );
 };
