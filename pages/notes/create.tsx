@@ -2,6 +2,7 @@ import { noteValidationSchema } from "@/schema/form-schema";
 import { SBTypes } from "@/supabase/database-types";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useFormik } from "formik";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
@@ -32,6 +33,9 @@ const CreateNote: React.FC = () => {
   const contentError = formik.touched.content && formik.errors.content;
   return (
     <>
+      <Head>
+        <title>Grab Quotes | Create</title>
+      </Head>
       <form className='form-control mt-8 w-full max-w-xs mx-auto' onSubmit={formik.handleSubmit}>
         <h1 className='w-full text-center text-3xl sm:text-4xl mb-8'>Create New Note</h1>
         <label className='label'>

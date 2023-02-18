@@ -1,9 +1,10 @@
 import { noteValidationSchema } from "@/schema/form-schema";
 import { SBTypes } from "@/supabase/database-types";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useFormik } from "formik";
+import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const EditNotePage: React.FC = () => {
@@ -46,6 +47,9 @@ const EditNotePage: React.FC = () => {
   const contentError = formik.touched.content && formik.errors.content;
   return (
     <>
+      <Head>
+        <title>Grab Quotes | Edit</title>
+      </Head>
       <form className='form-control mt-8 w-full max-w-xs mx-auto' onSubmit={formik.handleSubmit}>
         <h1 className='w-full text-center text-3xl sm:text-4xl mb-8'>Edit Note id:{noteid}</h1>
         <label className='label'>

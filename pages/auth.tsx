@@ -6,17 +6,20 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Head from "next/head";
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
   const supabase = useSupabaseClient<SBTypes>();
   const [authState, setAuthState] = useState<"Login" | "Sign Up">("Login");
+  
   const toggleAuthState = () => setAuthState((s) => (s === "Login" ? "Sign Up" : "Login"));
+  const handleDummyAccLogin = async () => onSubmit({ email: "salt22@gmail.com", password: "salt1234" });
 
-  const onSubmit = async () => {
+  const onSubmit = async (dummyAccData: { email: string; password: string } | null) => {
     let error: null | AuthError = null;
-    const authData = { email: formik.values.email, password: formik.values.password };
-
+    const authData = dummyAccData || { email: formik.values.email, password: formik.values.password };
+    console.log(authData);
     if (authState === "Login") {
       const { error: err } = await supabase.auth.signInWithPassword(authData);
       if (err) error = err;
@@ -26,7 +29,7 @@ const AuthPage: React.FC = () => {
       const { error: err } = await supabase.auth.signUp(authData);
       if (err) error = err;
     }
-
+    console.log(error);
     if (error) {
       toast.error("Something went wrong! Please try again later.");
       console.log(error);
@@ -46,6 +49,9 @@ const AuthPage: React.FC = () => {
   const passwordError = formik.touched.password && formik.errors.password;
   return (
     <>
+      <Head>
+        <title>Grab Quotes | Login</title>
+      </Head>
       <form className='form-control mt-8 w-full max-w-xs mx-auto' onSubmit={formik.handleSubmit}>
         <h1 className='w-full text-center text-3xl sm:text-4xl'>{authState}</h1>
         <label className='label'>
@@ -75,8 +81,16 @@ const AuthPage: React.FC = () => {
         <button type='submit' className='btn btn-active btn-accent mt-4' data-cy='auth-submit-btn'>
           {authState}
         </button>
-        <button type='button' onClick={toggleAuthState} className='btn btn-outline btn-accent mt-4' data-cy='auth-state-change-btn'>
+        <button
+          type='button'
+          onClick={toggleAuthState}
+          className='btn btn-outline btn-accent mt-4'
+          data-cy='auth-state-change-btn'
+        >
           {authState === "Login" ? "Create Account" : "I already have an account"}
+        </button>
+        <button onClick={() => handleDummyAccLogin()} type='button' className='btn  mt-4' data-cy='auth-submit-btn'>
+          Login with Dummy Account
         </button>
       </form>
     </>

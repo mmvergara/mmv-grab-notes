@@ -1,6 +1,7 @@
 import Note from "@/components/note";
 import { Notes, SBTypes } from "@/supabase/database-types";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -9,7 +10,7 @@ const Notes: React.FC = () => {
   const [notes, setNotes] = useState<Notes[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const fetchNotes = async () => {
-    console.log("feching notes")
+    console.log("feching notes");
     const { data, error } = await supabase.from("notes").select("*").order("created_at", { ascending: false });
     if (error) return console.log(error);
 
@@ -17,12 +18,14 @@ const Notes: React.FC = () => {
     setIsLoading(false);
   };
   useEffect(() => {
-
     fetchNotes();
   }, []);
 
   return (
     <>
+      <Head>
+        <title>Grab Quotes | Notes</title>
+      </Head>
       <Link
         href={"/notes/create"}
         className='flex btn btn-success w-[400px] mx-auto mt-4'

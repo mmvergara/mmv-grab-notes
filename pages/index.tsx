@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 export default function Home() {
   return (
     <>
@@ -8,9 +9,34 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>
-        <h1 className="text-5xl text-center my-4">Grab Notes</h1>
-        <p className="text-2xl text-center"></p>
+      <main className='flex justify-center items-center flex-col gap-4 mt-4'>
+        <h1 className='text-5xl text-center'>Grab Notes</h1>
+        <p className='text-2xl text-center'>{"Grab notes is a website that store's your notes safely and securely."}</p>
+        <span className='text-md text-center'>It is actually just a simple website for me to practice cypress</span>
+        <Link href='/auth' className='btn btn-secondary mx-2'>
+          {" "}
+          Login{" "}
+        </Link>
+        <div>
+          <a
+            href='https://github.com/mmvergara/mmv-grab-quotes'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='btn btn-accent mx-2'
+          >
+            {" "}
+            Github Repo{" "}
+          </a>
+          <a
+            href='https://mmv-docs.vercel.app/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='btn btn-accent mx-2'
+          >
+            {" "}
+            Docs{" "}
+          </a>
+        </div>
       </main>
     </>
   );
